@@ -1,5 +1,3 @@
-# examples
-Example projects to use the PASMO platform
 <!-- PROJECT SHIELDS -->
 <!--
 *** I'm using markdown "reference style" links for readability.
