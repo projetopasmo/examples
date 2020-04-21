@@ -22,7 +22,7 @@
 <br  />
 <p  align="center">
 <a  href="http://pasmo.av.it.pt/">
-<img  src="http://pasmo.av.it.pt/wp-content/uploads/2017/09/pasmo_logo_new.png"  alt="Logo"  width="80"  height="80">
+<img  src="http://pasmo.av.it.pt/wp-content/uploads/2017/09/pasmo_logo_new.png"  alt="Logo">
 </a>
 
 <h3  align="center">PASMO examples</h3>
