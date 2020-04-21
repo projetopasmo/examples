@@ -18,7 +18,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/projetopasmo/examples">
-    <img src="img/logo.png" alt="Logo" width="160" height="80">
+    <img src="img/logo.png" alt="Logo" width="200">
   </a>
 
   <h3 align="center">PASMO examples</h3>
