@@ -1,175 +1,143 @@
+
 <!-- PROJECT SHIELDS -->
+
 <!--
+
 *** I'm using markdown "reference style" links for readability.
+
 *** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
+
 *** See the bottom of this document for the declaration of the reference variables
+
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
+
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
+
 -->
 
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
+  
 
+<!-- PASMO LOGO -->
 
+<br  />
+<p  align="center">
+<a  href="http://pasmo.av.it.pt/">
+<img  src="img/logo.png"  alt="Logo"  width="80"  height="80">
+</a>
 
-<!-- PROJECT LOGO -->
-<br />
-<p align="center">
-  <a href="https://github.com/projetopasmo/examples">
-    <img src="img/logo.png" alt="Logo" width="200">
-  </a>
+<h3  align="center">PASMO examples</h3>
 
-  <h3 align="center">PASMO examples</h3>
+<p  align="center">
+Platform that provides some examples on how to access and manipulate data from the API that the PASMO project provides.
+<br  />
+<a  href="https://pasmo.es.av.it.pt/docs/"><strong>Explore the API documentation</strong></a>
+<br  />
+<br  />
 
-  <p align="center">
-    An awesome set of Examples to jumpstart your projects with PASMO!
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
-  </p>
+<!-- <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+· -->
+
+<a  href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
+·
+<a  href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+</p>
 </p>
 
-
-
 <!-- TABLE OF CONTENTS -->
+
 ## Table of Contents
 
-* [About the Project](#about-the-project)
-  * [Built With](#built-with)
-* [Getting Started](#getting-started)
-  * [Prerequisites](#prerequisites)
-  * [Installation](#installation)
-* [Usage](#usage)
-* [Roadmap](#roadmap)
-* [Contributing](#contributing)
-* [License](#license)
-* [Contact](#contact)
-* [Acknowledgements](#acknowledgements)
-
-
+*  [About the Project](#about-the-project)
+*  [Built With](#built-with)
+*  [Getting Started](#getting-started)
+*  [Usage](#usage)
+*  [Usage of the API](#usage-of-the-api)
+*  [Contact](#contact)
+  
 
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+The main goal of PASMO is to provide an open platform where researchers can test technologies and develop their ideas.
 
-There are many great README templates available on GitHub, however, I didn't find one that really suit my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need.
+This GitHub provides examples on how to use data provided by the PASMO project, and how to access the REST API that gives this data.
 
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should element DRY principles to the rest of your life :smile:
+The examples provided do not use all the calls available in the API, so to further investigate visit the <a  href="https://pasmo.es.av.it.pt/docs/">documentation page</a>.
 
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue.
-
-A list of commonly used resources that I find helpful are listed in the acknowledgements.
+These examples are only a way to show how the data can be handled, other libraries can be used to build charts and maps.
 
 ### Built With
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-* [Bootstrap](https://getbootstrap.com)
-* [JQuery](https://jquery.com)
-* [Laravel](https://laravel.com)
 
+Several libraries were used to help build the structure of the demonstrations, charts and maps.
 
+Some were downloaded and used locally such as:
+
+*  [Bootstrap](https://getbootstrap.com)
+*  [Popper](https://popper.js.org/)
+
+Others are delivered by Content Delivery Network(CDN):
+*  [ChartJS](https://www.chartjs.org/)
+*  [JQuery](https://jquery.com)
+*  [GoogleMaps API](https://developers.google.com/apis-explorer)
+*  [Feather Icons](https://feathericons.com/)
+
+  
 
 <!-- GETTING STARTED -->
+
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+The examples provided can be cloned and used, all the libraries are installed. To view the google maps, an API key is necessary and can be retrieved <a  href="https://developers.google.com/maps/documentation/javascript/get-api-key">here</a>.
 
-### Prerequisites
+After getting the API key, place it nearly the end of the index.html, replacing "YOUR-KEY-HERE".
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
 ```sh
-npm install npm@latest -g
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR-KEY-HERE&callback=parkingMap"></script>
 ```
-
-### Installation
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-```sh
-git clone https://github.com/your_username_/Project-Name.git
-```
-3. Install NPM packages
-```sh
-npm install
-```
-4. Enter your API in `config.js`
-```JS
-const API_KEY = 'ENTER YOUR API';
-```
-
-
-
+  
 <!-- USAGE EXAMPLES -->
+
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+The demonstration is written in JavaScript, so this means that it can be viewed simply by opening index.html.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+### Usage of the API
 
+On the first page, where the traffic flow is shown, a chart was built using the request that gives information about the events in different regions.
+Get number of cars entering Barra, per hour on the 20th of April 2020
 
+```sh
+https://pasmo.es.av.it.pt/api/radars/events/barra/cars_in?initialDate=2020-04-20T00:00:00Z&finalDate=2020-04-20T23:59:59Z&groupby=3600
 
-<!-- ROADMAP -->
-## Roadmap
+```
 
-See the [open issues](https://github.com/projetopasmo/examples/issues) for a list of proposed features (and known issues).
+![alt text](gifs/chart.gif)
 
+On the second page, where the map is displayed, two different requests were used, one to provide the location of the parking sensors, and other to provide the state of the parking lot, i.e., if it is free or occupied.
 
+Get all sensor location
 
-<!-- CONTRIBUTING -->
-## Contributing
+```sh
+https://pasmo.es.av.it.pt/api/parking/availableSensors?state=available
 
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+```
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+Get recent state of the sensors
 
+```sh
+https://pasmo.es.av.it.pt/api/parking/latestValues
 
+```
 
+![alt text](gifs/map.gif)
 
-
+The data is then merged to build a map with the parking sensors location and change the color of the icons, depending on their state(green if they are free and red if they are occupied). Because it is built on top of google maps, it is possible to go to street view and see where exactly are the parking lots.
 
 <!-- CONTACT -->
+
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+[Contact Page](http://pasmo.av.it.pt/contactos/)
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
-
-
-
-
-
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=flat-square
-[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=flat-square
-[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=flat-square
-[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=flat-square
-[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=flat-square
-[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
-[product-screenshot]: images/screenshot.png
-
+Project Link: [http://pasmo.av.it.pt](http://pasmo.av.it.pt)
