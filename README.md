@@ -24,7 +24,7 @@
   <h3 align="center">PASMO examples</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    An awesome set of Examples to jumpstart your projects with PASMO!
     <br />
     <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
     <br />
