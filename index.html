@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" href="./img/favicon.ico">
+
+  <title>Exemplo App PASMO</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="./dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="./dist/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+  <nav class="navbar navbar-info fixed-top bg-info flex-md-nowrap p-0 shadow">
+    <a class="navbar-title col-sm-3 col-md-2 mr-0" href="index.html#">
+      <div class="brand-logo">
+        <img class="img-fluid" src="./img/logo.png" alt="App Logo" />
+      </div>
+    </a>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row">
+      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a id="trafego" class="nav-link active" onclick="changeDiv('trafego')" href="#"> <!-- The active thing -->
+                <span data-feather="bar-chart"></span>
+                Fluxo de trafego
+              </a>
+            </li>
+            <li class="nav-item">
+              <a id="mapa" class="nav-link" onclick="changeDiv('mapa'); getMarkers()" href="#">
+                <span data-feather="map"></span>
+                Mapa
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <div id="trafficArea">
+          <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 id="regionTitle" class="h2">Fluxo de trafego na Barra</h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+              <button class=" dropdown-toggle dropdown-toggle-nocaretz btn btn-sm btn-outline-secondary dropdown-toggle"
+                type="button" data-toggle="dropdown">
+                <span data-feather="map-pin"></span>
+                <a id="regionDrop">Região</a>
+              </button>
+              <div class="dropdown-menu dropdown-menu-right-forced animated" style="min-width: 0;">
+                <a class="dropdown-item" href="#" onclick="filterClicked('barra')">Barra</a>
+                <a class="dropdown-item" href="#" onclick="filterClicked('costa_nova')">Costa Nova</a>
+              </div>
+            </div>
+          </div>
+          <canvas height="120" id="canvas"></canvas>
+        </div>
+
+        <div style="display: none;" id="mapArea">
+          <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 id="regionTitle" class="h2">Mapa de parques de estacionamento</h1>
+          </div>
+          <div class="map" id="map"></div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js'></script>
+  <script src='https://cdn.rawgit.com/chartjs/Chart.js/master/samples/utils.js'></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="./dist/js/popper.min.js"></script>
+
+  <script src="./dist/js/bootstrap.min.js"></script>
+  <script src="./dist/js/map.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR-KEY-HERE&callback=parkingMap"></script>
+  <script src="./dist/js/main.js"></script>
+  <script src="./dist/js/chart.js"></script>
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+  <script>
+    feather.replace()
+  </script>
+
+</body>
+
+</html>
