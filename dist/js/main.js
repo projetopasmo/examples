@@ -4,7 +4,7 @@ function changeDiv(target){
         element.classList.remove("active");
 
         document.getElementById("trafficArea").style.display = "none"
-        document.getElementById("mapArea").style.display = "inline"
+        document.getElementById("mapArea").style.display = ""
 
         var element = document.getElementById(target);
         element.classList.add("active");
@@ -14,7 +14,7 @@ function changeDiv(target){
         element.classList.remove("active");
 
         document.getElementById("mapArea").style.display = "none"
-        document.getElementById("trafficArea").style.display = "inline"
+        document.getElementById("trafficArea").style.display = ""
 
         var element = document.getElementById(target);
         element.classList.add("active");

@@ -109,6 +109,7 @@ var chartData = {
 window.onload = function () {
   var ctx = document.getElementById("canvas").getContext("2d");
   this.getInfo("barra")
+  console.log("CUNT")
   trafficChart = new Chart(ctx, {
     type: "bar",
     data: chartData,
