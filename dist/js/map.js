@@ -1,11 +1,10 @@
 
 var map;
 function parkingMap() {
-    map = new google.maps.Map(document.getElementById('map'), {
+    map = new google.maps.Map(document.getElementById('parking_map'), {
         center: { lat: 40.6427133, lng: -8.7455922 },
         zoom: 18,
-
-        //        mapTypeId: 'satellite'
+        mapTypeId: 'satellite'
     });
 };
 
@@ -46,5 +45,4 @@ function handleOccupationRequest(latest, data){
             }
         }
     }
-    console.log(data)
 }

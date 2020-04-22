@@ -52,10 +52,10 @@ function filterClicked(region){
 
   if(region == "barra"){
     document.getElementById("regionDrop").innerHTML = "Barra";
-    document.getElementById("regionTitle").innerHTML = "Fluxo de trafego na Barra";
+    document.getElementById("regionTitle").innerHTML = "Traffic Flow in Barra";
   }else{
     document.getElementById("regionDrop").innerHTML = "Costa Nova";
-    document.getElementById("regionTitle").innerHTML = "Fluxo de trafego na Costa Nova";
+    document.getElementById("regionTitle").innerHTML = "Traffic Flow in Costa Nova";
   }
   getInfo(region)
 }
@@ -81,7 +81,7 @@ var chartData = {
   datasets: [
     {
       type: "line",
-      label: "Fluxo de trafego",
+      label: "Traffic Flow",
       borderColor: 'rgba(114,102,186,1)',
       backgroundColor: 'rgba(114,102,186,0.2)',
       borderWidth: 2,
@@ -89,7 +89,7 @@ var chartData = {
     },
     {
       type: "bar",
-      label: "Carros a entrar",
+      label: "Vehicles entering",
       backgroundColor: 'rgba(35,183,229,0.5)',
       borderColor: 'rgba(35,183,229,1)',
       borderWidth: 2,
@@ -97,7 +97,7 @@ var chartData = {
     },
     {
       type: "bar",
-      label: "Carros a sair",
+      label: "Vehicles exiting",
       backgroundColor: 'rgba(229, 35, 35,0.5)',
       borderColor: 'rgba(229, 35, 35,1)',
       borderWidth: 2,
@@ -109,7 +109,6 @@ var chartData = {
 window.onload = function () {
   var ctx = document.getElementById("canvas").getContext("2d");
   this.getInfo("barra")
-  console.log("CUNT")
   trafficChart = new Chart(ctx, {
     type: "bar",
     data: chartData,

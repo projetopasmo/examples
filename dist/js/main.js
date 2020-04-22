@@ -1,6 +1,6 @@
 function changeDiv(target){
-    if(target == "mapa"){
-        var element = document.getElementById("trafego");
+    if(target == "map"){
+        var element = document.getElementById("traffic");
         element.classList.remove("active");
 
         document.getElementById("trafficArea").style.display = "none"
@@ -10,7 +10,7 @@ function changeDiv(target){
         element.classList.add("active");
         
     }else{
-        var element = document.getElementById("mapa");
+        var element = document.getElementById("map");
         element.classList.remove("active");
 
         document.getElementById("mapArea").style.display = "none"

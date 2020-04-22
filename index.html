@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <link rel="icon" href="./img/favicon.ico">
 
-  <title>Exemplo App PASMO</title>
+  <title>PASMO Exemple App</title>
 
   <!-- Bootstrap core CSS -->
   <link href="./dist/css/bootstrap.min.css" rel="stylesheet">
@@ -29,15 +29,15 @@
         <div class="sidebar-sticky">
           <ul class="nav flex-column">
             <li class="nav-item">
-              <a id="trafego" class="nav-link active" onclick="changeDiv('trafego')" href="#"> <!-- The active thing -->
+              <a id="traffic" class="nav-link active" onclick="changeDiv('traffic')" href="#"> <!-- The active thing -->
                 <span data-feather="bar-chart"></span>
-                Fluxo de trafego
+                Traffic flow
               </a>
             </li>
             <li class="nav-item">
-              <a id="mapa" class="nav-link" onclick="changeDiv('mapa'); getMarkers()" href="#">
+              <a id="map" class="nav-link" onclick="changeDiv('map'); getMarkers()" href="#">
                 <span data-feather="map"></span>
-                Mapa
+                Parking Map
               </a>
             </li>
           </ul>
@@ -48,12 +48,12 @@
         <div id="trafficArea">
           <div
             class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 id="regionTitle" class="h2">Fluxo de trafego na Barra</h1>
+            <h1 id="regionTitle" class="h2">Traffic Flow in Barra</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
               <button class=" dropdown-toggle dropdown-toggle-nocaretz btn btn-sm btn-outline-secondary dropdown-toggle"
                 type="button" data-toggle="dropdown">
                 <span data-feather="map-pin"></span>
-                <a id="regionDrop">Região</a>
+                <a id="regionDrop">Region</a>
               </button>
               <div class="dropdown-menu dropdown-menu-right-forced animated" style="min-width: 0;">
                 <a class="dropdown-item" href="#" onclick="filterClicked('barra')">Barra</a>
@@ -67,9 +67,9 @@
         <div style="display: none;" id="mapArea">
           <div
             class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 id="regionTitle" class="h2">Mapa de parques de estacionamento</h1>
+            <h1 id="regionTitle" class="h2">Parking Lots Map</h1>
           </div>
-          <div class="map" id="map"></div>
+          <div class="map" id="parking_map"></div>
         </div>
 
       </main>
@@ -79,7 +79,7 @@
   <!-- JavaScript -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js'></script>
   <script src='https://cdn.rawgit.com/chartjs/Chart.js/master/samples/utils.js'></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="./dist/js/popper.min.js"></script>
 
   <script src="./dist/js/bootstrap.min.js"></script>
