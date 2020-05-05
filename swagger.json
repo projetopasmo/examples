@@ -1,0 +1,764 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "API service to provide data from the PASMO project",
+    "version": "1.1.0",
+    "title": "PASMO API"
+  },
+  "host": "pasmo.es.av.it.pt",
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "Parking",
+      "description": "Requests related to the parking sensors data"
+    },
+    {
+      "name": "Radars",
+      "description": "Requests related to the radar's data"
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/parking": {
+      "get": {
+        "tags": [
+          "Parking"
+        ],
+        "summary": "Finds data from all the parking sensors.",
+        "description": "Gives the raw data of all parking sensors from a specific time interval, which must be 7 days or less.",
+        "operationId": "getAllSensorsData",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "initialDate",
+            "in": "query",
+            "required": true,
+            "description": "Date-time where the interval begins",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "finalDate",
+            "in": "query",
+            "required": true,
+            "description": "Date-time where the interval ends",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "Way to order the data",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Limit the quantity of information given.\nValues lower or equal to zero will be ignored",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Quantity to offset the information given.\nValues lower or equal to zero will be ignored",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Sensor"
+              }
+            }
+          },
+          "404": {
+            "description": "Sensors data not found"
+          }
+        }
+      }
+    },
+    "/parking/{sensorID}": {
+      "get": {
+        "tags": [
+          "Parking"
+        ],
+        "summary": "Finds data from a specific parking sensor.",
+        "description": "Gives the raw data of a selected parking sensor from a specific time interval, which must be 7 days or less.",
+        "operationId": "getSensorData",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "sensorID",
+            "in": "path",
+            "description": "ID of the parking sensor",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "initialDate",
+            "in": "query",
+            "required": true,
+            "description": "Date-time where the interval begins",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "finalDate",
+            "in": "query",
+            "required": true,
+            "description": "Date-time where the interval ends",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "Way to order the data",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Limit the quantity of information given.\nValues lower or equal to zero will be ignored",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Quantity to offset the information given.\nValues lower or equal to zero will be ignored",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Sensor"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID provided"
+          },
+          "404": {
+            "description": "Sensor not found"
+          }
+        }
+      }
+    },
+    "/parking/availableSensors": {
+      "get": {
+        "tags": [
+          "Parking"
+        ],
+        "summary": "Finds the identification and position of the all sensors.",
+        "description": "Gets the ID and geographic coordinates of the sensors given their state.",
+        "operationId": "getSensorIDs",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "state",
+            "in": "query",
+            "description": "State values to filter data",
+            "required": true,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "available",
+                "active"
+              ],
+              "default": "available"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/SensorInformation"
+            }
+          },
+          "400": {
+            "description": "Invalid state value"
+          },
+          "404": {
+            "description": "Data not found"
+          }
+        }
+      }
+    },
+    "/parking/occupation": {
+      "get": {
+        "tags": [
+          "Parking"
+        ],
+        "summary": "Finds the occupation of the parking lots at a given day.",
+        "description": "Gets number of parking lots free and occupied per hour, in a given day.",
+        "operationId": "getOccupation",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "day",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "format": "date"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Occupation"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid state value"
+          },
+          "404": {
+            "description": "Data not found"
+          }
+        }
+      }
+    },
+    "/parking/latestValues": {
+      "get": {
+        "tags": [
+          "Parking"
+        ],
+        "summary": "Finds the most recent values from each parking sensors.",
+        "description": "Gives the last value posted by each individual sensors.",
+        "operationId": "getLatestValues",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Sensor"
+              }
+            }
+          },
+          "404": {
+            "description": "Sensors data not found"
+          }
+        }
+      }
+    },
+    "/radars/location": {
+      "get": {
+        "tags": [
+          "Radars"
+        ],
+        "summary": "Finds radar location.",
+        "description": "Gives coordinates where the radars are installed.",
+        "operationId": "getRadarLoc",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/RadarLoc"
+              }
+            }
+          },
+          "404": {
+            "description": "Data not found"
+          }
+        }
+      }
+    },
+    "/radars/{radar_id}": {
+      "get": {
+        "tags": [
+          "Radars"
+        ],
+        "summary": "Finds all the measurements from all the radars.",
+        "description": "Gives all the measurements from the radars. \nThe time interval must be 1 day or less.",
+        "operationId": "getAllMesRadar",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "initialDate",
+            "in": "query",
+            "required": true,
+            "description": "Date-time where the interval begins",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "finalDate",
+            "in": "query",
+            "required": true,
+            "description": "Date-time where the interval ends",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "radar_id",
+            "in": "path",
+            "required": true,
+            "description": "Identification of the radar",
+            "type": "string",
+            "enum": [
+              "ponte",
+              "dunaMeio",
+              "riaAtiva",
+              "all"
+            ]
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "Way to order the data",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Limit the quantity of information given.\nValues lower or equal to zero will be ignored",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Quantity to offset the information given.\nValues lower or equal to zero will be ignored",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/RadarInformation"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid location supplied"
+          },
+          "404": {
+            "description": "Data not found"
+          }
+        }
+      }
+    },
+    "/radars/{radar_id}/{measurement}": {
+      "get": {
+        "tags": [
+          "Radars"
+        ],
+        "summary": "Finds a specific measurement made by the radar.",
+        "description": "Gives a measurement from the radars. The type of measurements can be specified to find the average speed in a certain time period, for example.",
+        "operationId": "getMesRadar",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "radar_id",
+            "in": "path",
+            "description": "Filter data by radar location",
+            "required": true,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "ponte",
+                "dunaMeio",
+                "riaAtiva",
+                "all"
+              ]
+            }
+          },
+          {
+            "name": "measurement",
+            "in": "path",
+            "description": "Filter by measurement made by the radars",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "speed",
+              "class"
+            ]
+          },
+          {
+            "name": "initialDate",
+            "in": "query",
+            "required": true,
+            "description": "Date-time where the interval begins",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "finalDate",
+            "in": "query",
+            "required": true,
+            "description": "Date-time where the interval ends",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "Way to order the data",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Limit the quantity of information given.\nValues lower or equal to zero will be ignored",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Quantity to offset the information given.\nValues lower or equal to zero will be ignored",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Measurement"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid location or measurement supplied"
+          },
+          "404": {
+            "description": "Data not found"
+          }
+        }
+      }
+    },
+    "/radars/events/{region}/{event}": {
+      "get": {
+        "tags": [
+          "Radars"
+        ],
+        "summary": "Gives information about different events in a specific region or radar.",
+        "description": "Filtering by region, Barra or Costa Nova, or radar identification. Different events are provided from a specific time interval. This results can be grouped by a specific length of time.",
+        "operationId": "getRadarEvents",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "region",
+            "in": "path",
+            "description": "Filter data by region",
+            "required": true,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "barra",
+                "costa_nova",
+                "ponte",
+                "dunaMeio",
+                "riaAtiva"
+              ]
+            }
+          },
+          {
+            "name": "event",
+            "in": "path",
+            "description": "Filter data by events:\n  * 'cars_in' describes the number of cars entering the region\n  * 'cars_out' describes the number of cars leaving the region\n  * 'cars' describes the flow of traffic in the region\n",
+            "required": true,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "cars_in",
+                "cars_out",
+                "cars"
+              ]
+            }
+          },
+          {
+            "name": "initialDate",
+            "in": "query",
+            "required": true,
+            "description": "Date-time where the interval begins",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "finalDate",
+            "in": "query",
+            "required": true,
+            "description": "Date-time where the interval ends",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "groupby",
+            "in": "query",
+            "required": false,
+            "description": "Group the results by any length of time, for example per hour. If this field is empty the result will be grouped by a default value. This lenght of time must be expressed in seconds.",
+            "type": "integer"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Limit the quantity of information given.\nValues lower or equal to zero will be ignored",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Quantity to offset the information given.\nValues lower or equal to zero will be ignored",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Event"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid localization or event supplied"
+          },
+          "404": {
+            "description": "Data not found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Sensor": {
+      "type": "object",
+      "properties": {
+        "sensor_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "SensorInformation": {
+      "type": "object",
+      "properties": {
+        "sensor_info": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SensorInfo"
+          }
+        },
+        "state": {
+          "type": "string"
+        }
+      }
+    },
+    "SensorInfo": {
+      "type": "object",
+      "properties": {
+        "sensor_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "lat": {
+          "type": "number",
+          "format": "double"
+        },
+        "long": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "Occupation": {
+      "type": "object",
+      "properties": {
+        "taken": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "free": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "hour": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "RadarLoc": {
+      "type": "object",
+      "properties": {
+        "radar_id": {
+          "type": "string"
+        },
+        "lat": {
+          "type": "number",
+          "format": "double"
+        },
+        "long": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "RadarInformation": {
+      "type": "object",
+      "properties": {
+        "object_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "speed": {
+          "type": "number",
+          "format": "float"
+        },
+        "class": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "device": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "Measurement": {
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "device": {
+          "type": "string"
+        },
+        "measurement": {
+          "description": "Measurement will change depending on what is chosen.",
+          "type": "integer",
+          "format": "integer"
+        }
+      }
+    },
+    "Event": {
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "number_of_cars": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about PASMO",
+    "url": "http://pasmo.av.it.pt/"
+  }
+}
