@@ -139,4 +139,4 @@ The data is then merged to build a map with the parking sensors location and cha
 
 [Contact Page](http://pasmo.av.it.pt/contactos/)
 
-Project Link: [http://pasmo.pt](http://pasmo.av.it.pt)
+Project Link: [http://pasmo.pt](http://pasmo.pt)
