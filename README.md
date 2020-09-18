@@ -36,9 +36,9 @@ Platform that provides some examples on how to access and manipulate data from t
 
 <a href="https://projetopasmo.github.io/examples/">View Demo</a>
 ·
-<a  href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
+<a  href="https://github.com/projetopasmo/examples/issues">Report Bug</a>
 ·
-<a  href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+<a  href="https://github.com/projetopasmo/examples/issues">Request Feature</a>
 </p>
 </p>
 
